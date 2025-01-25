@@ -1,0 +1,29 @@
+name: Finlight Bot
+
+on:
+  schedule:
+    - cron: '30 14 * * 1-5'  # 9:30 AM EST
+    - cron: '0 17 * * 1-5'   # 12:00 PM EST
+    - cron: '0 22 * * 1-5'   # 5:00 PM EST
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run bot
+      env:
+        FINLIGHT_API_KEY: ${{ secrets.FINLIGHT_API_KEY }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: node index.js
