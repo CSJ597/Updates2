@@ -1,0 +1,15 @@
+{
+  "name": "finlight-project",
+  "version": "1.0.0",
+  "description": "S&P 500/ES news monitoring with Finlight API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "finlight-client": "latest",
+    "node-fetch": "^3.3.0",
+    "node-cron": "^3.0.0"
+  }
+}
